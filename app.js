@@ -1,111 +1,104 @@
-const mockUsers = [
-    {
-        id: 1,
-        name: "小雨",
-        gender: "female",
-        age: 26,
-        intro: "热爱生活，喜欢阅读、旅行和美食。性格温柔开朗，希望找到一位真诚、有责任感的伴侣。",
-        preference: "希望对方性格阳光，有稳定工作，喜欢运动和旅行。"
-    },
-    {
-        id: 2,
-        name: "阿杰",
-        gender: "male",
-        age: 28,
-        intro: "程序员一枚，喜欢科技、电影和健身。性格内敛但真诚，希望遇到一位善解人意的女生。",
-        preference: "希望对方温柔体贴，有共同话题，热爱生活。"
-    },
-    {
-        id: 3,
-        name: "小雅",
-        gender: "female",
-        age: 25,
-        intro: "设计从业者，喜欢艺术、音乐和摄影。追求有品质的生活，相信缘分。",
-        preference: "希望对方有艺术感，成熟稳重，有上进心。"
-    }
-];
-
-function generateMatchReason(user, candidate) {
-    const reasons = [
-        `你们都热爱生活，有着相似的生活态度，这会让你们的相处充满乐趣。`,
-        `从你们的介绍来看，性格互补，一个开朗一个稳重，是很好的组合。`,
-        `你们都提到了喜欢旅行，共同的爱好会成为你们感情的催化剂。`,
-        `从择偶偏好来看，你们对彼此的期待很匹配，这是一个很好的开始。`
-    ];
-    return reasons[Math.floor(Math.random() * reasons.length)];
-}
-
-function generateScore() {
-    return Math.floor(Math.random() * 40) + 60;
-}
-
-function showStep(stepNumber) {
-    document.querySelectorAll('.step').forEach(step => {
-        step.classList.remove('active');
-    });
-    document.getElementById(`step${stepNumber}`).classList.add('active');
-}
-
-document.getElementById('registerForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const userData = {
-        name: document.getElementById('name').value,
-        gender: document.getElementById('gender').value,
-        age: parseInt(document.getElementById('age').value),
-        intro: document.getElementById('intro').value,
-        preference: document.getElementById('preference').value
-    };
-    
-    const targetGender = userData.gender === 'male' ? 'female' : 'male';
-    const candidates = mockUsers.filter(u => u.gender === targetGender);
-    
-    const resultsHtml = candidates.map(candidate => {
-        const score = generateScore();
-        const reason = generateMatchReason(userData, candidate);
-        return `
-            <div class="match-card">
-                <div class="match-header">
-                    <div class="match-name">${candidate.name} (${candidate.age}岁)</div>
-                    <div class="match-score">${score}% 匹配度</div>
-                </div>
-                <div class="match-reason">${reason}</div>
-                <p><strong>自我介绍：</strong>${candidate.intro}</p>
-                <div class="match-actions">
-                    <button class="btn-confirm" onclick="confirmMatch('${candidate.name}')">确认配对</button>
-                    <button class="btn-pass" onclick="passMatch()">跳过</button>
-                </div>
-            </div>
-        `;
-    }).join('');
-    
-    document.getElementById('matchResults').innerHTML = resultsHtml;
-    showStep(2);
-});
-
-document.getElementById('backToRegister').addEventListener('click', function() {
-    showStep(1);
-});
-
-function confirmMatch(name) {
-    document.getElementById('confirmContent').innerHTML = `
-        <div class="success-icon">🎉</div>
-        <h3>恭喜！你和 ${name} 已确认配对！</h3>
-        <p>双方都确认后，就可以交换联系方式啦！</p>
-        <div class="contact-info">
-            <p><strong>模拟联系方式：</strong></p>
-            <p>📱 微信号：lovematch_${Date.now()}</p>
-            <p>📧 邮箱：match_${Date.now()}@example.com</p>
-        </div>
+function showLove() {
+    const loveMessage = document.createElement('div');
+    loveMessage.className = 'love-message';
+    loveMessage.innerHTML = `
+        <h2>💖 在一起吧！</h2>
+        <p>我好开心！从今天起，<br>我们就是世界上最幸福的人！</p>
+        <p style="margin-top: 20px; font-size: 1.5em;">❤️ 520 ❤️</p>
     `;
-    showStep(3);
+    document.body.appendChild(loveMessage);
+    
+    createConfetti();
+    
+    setTimeout(() => {
+        loveMessage.style.animation = 'pop-in 0.5s ease-out reverse';
+        setTimeout(() => {
+            loveMessage.remove();
+        }, 500);
+    }, 5000);
 }
 
-function passMatch() {
-    alert('已跳过，继续查看其他匹配对象吧！');
+function playGame() {
+    const btnNo = document.querySelector('.btn-no');
+    const btnYes = document.querySelector('.btn-yes');
+    
+    let attempts = 0;
+    const maxAttempts = 3;
+    
+    btnNo.addEventListener('mouseenter', function() {
+        if (attempts < maxAttempts) {
+            const container = document.querySelector('.container');
+            const rect = container.getBoundingClientRect();
+            
+            const newX = Math.random() * (rect.width - btnNo.offsetWidth);
+            const newY = Math.random() * (rect.height - btnNo.offsetHeight);
+            
+            btnNo.style.position = 'absolute';
+            btnNo.style.left = `${newX}px`;
+            btnNo.style.top = `${newY}px`;
+            
+            attempts++;
+            
+            if (attempts === maxAttempts) {
+                btnNo.textContent = '好吧，我也喜欢你 💖';
+                btnNo.classList.remove('btn-no');
+                btnNo.classList.add('btn-yes');
+                btnNo.removeEventListener('mouseenter', arguments.callee);
+            }
+        }
+    });
 }
 
-document.getElementById('startOver').addEventListener('click', function() {
-    document.getElementById('registerForm').reset();
-    showStep(1);
-});
+function createConfetti() {
+    const colors = ['#ff6b9d', '#c44569', '#f8b500', '#ffd700', '#ffc0cb'];
+    const confettiContainer = document.getElementById('confetti');
+    
+    for (let i = 0; i < 50; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.left = `${Math.random() * 100}%`;
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.width = `${5 + Math.random() * 10}px`;
+        piece.style.height = piece.style.width;
+        piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        piece.style.animationDelay = `${Math.random() * 2}s`;
+        piece.style.animationDuration = `${2 + Math.random() * 2}s`;
+        
+        confettiContainer.appendChild(piece);
+    }
+    
+    setTimeout(() => {
+        confettiContainer.innerHTML = '';
+    }, 4000);
+}
+
+function floatingHearts() {
+    const container = document.querySelector('.container');
+    
+    setInterval(() => {
+        const heart = document.createElement('div');
+        heart.innerHTML = '❤️';
+        heart.style.position = 'absolute';
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.top = '100%';
+        heart.style.fontSize = `${16 + Math.random() * 16}px`;
+        heart.style.opacity = 0.7;
+        heart.style.pointerEvents = 'none';
+        heart.style.zIndex = 100;
+        
+        container.appendChild(heart);
+        
+        let top = 100;
+        const floatInterval = setInterval(() => {
+            top -= 0.5;
+            heart.style.top = `${top}%`;
+            
+            if (top < -10) {
+                clearInterval(floatInterval);
+                heart.remove();
+            }
+        }, 20);
+    }, 800);
+}
+
+floatingHearts();

@@ -3,63 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI婚姻匹配系统</title>
+    <title>💘 520 专属表白</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>💝 AI 婚姻匹配系统</h1>
-            <p class="subtitle">基于大模型语义理解的极简婚恋匹配</p>
-        </header>
+        <div class="heart-container">
+            <div class="heart"></div>
+            <div class="heart"></div>
+            <div class="heart"></div>
+        </div>
 
-        <section id="step1" class="step active">
-            <h2>第一步：注册信息</h2>
-            <form id="registerForm">
-                <div class="form-group">
-                    <label for="name">你的昵称</label>
-                    <input type="text" id="name" name="name" required placeholder="输入你的昵称">
-                </div>
-                <div class="form-group">
-                    <label for="gender">性别</label>
-                    <select id="gender" name="gender" required>
-                        <option value="">请选择</option>
-                        <option value="male">男</option>
-                        <option value="female">女</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="age">年龄</label>
-                    <input type="number" id="age" name="age" required min="18" max="100" placeholder="输入你的年龄">
-                </div>
-                <div class="form-group">
-                    <label for="intro">自我介绍（自由文本）</label>
-                    <textarea id="intro" name="intro" required rows="5" placeholder="介绍一下你自己，你的性格、爱好、工作、生活态度等..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="preference">择偶偏好（自由文本）</label>
-                    <textarea id="preference" name="preference" required rows="5" placeholder="描述你理想中的另一半，性格、爱好、生活方式等..."></textarea>
-                </div>
-                <button type="submit" class="btn-primary">开始匹配</button>
-            </form>
-        </section>
+        <div class="card">
+            <h1 class="title">亲爱的 ❤️</h1>
+            <p class="subtitle">我有话想对你说...</p>
+            
+            <div class="message-box">
+                <p class="message">
+                    从遇见你的那一刻起，
+                    <br>我的生命就变得不再平凡。
+                    <br><br>
+                    你的微笑是我每天最期待的阳光，
+                    <br>你的声音是我听过最美的旋律。
+                    <br><br>
+                    我想告诉你：
+                    <br><span class="highlight">我喜欢你</span>，
+                    <br>不止一点点，
+                    <br>是很喜欢很喜欢的那种。
+                </p>
+            </div>
 
-        <section id="step2" class="step">
-            <h2>第二步：匹配结果</h2>
-            <div id="matchResults" class="results-container"></div>
-            <button id="backToRegister" class="btn-secondary">返回修改</button>
-        </section>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-num">5</span>
+                    <span class="countdown-text">2</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-num">0</span>
+                    <span class="countdown-text">0</span>
+                </div>
+            </div>
 
-        <section id="step3" class="step">
-            <h2>第三步：双向确认</h2>
-            <div id="confirmContent" class="confirm-container"></div>
-            <button id="startOver" class="btn-primary">重新开始</button>
-        </section>
+            <div class="buttons">
+                <button class="btn-yes" onclick="showLove()">我也喜欢你 💖</button>
+                <button class="btn-no" onclick="playGame()">再考虑一下...</button>
+            </div>
+
+            <div class="confetti" id="confetti"></div>
+        </div>
+
+        <div class="stars">
+            <span class="star">✨</span>
+            <span class="star">⭐</span>
+            <span class="star">✨</span>
+            <span class="star">⭐</span>
+            <span class="star">✨</span>
+        </div>
     </div>
-
-    <footer>
-        <p>&copy; 2026 AI 婚姻匹配系统. 极简设计，用心匹配。</p>
-    </footer>
 
     <script src="app.js"></script>
 </body>
