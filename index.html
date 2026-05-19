@@ -2,65 +2,1957 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💘 520 专属表白</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>❤️ 遇见你</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700&family=ZCOOL+XiaoWei&family=Noto+Serif+SC:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B9D;
+            --secondary: #C084FC;
+            --accent: #FFD93D;
+            --bg: #FFF5F7;
+            --text: #2D2D2D;
+            --text-light: #666666;
+            --white: #FFFFFF;
+            --shadow: 0 10px 40px rgba(255, 107, 157, 0.15);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        .section {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+            scroll-snap-align: start;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-inner {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ========== 通用装饰元素 ========== */
+        .decoration-line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            margin: 1.5rem auto;
+        }
+
+        .decoration-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 1rem 0;
+        }
+
+        .decoration-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            opacity: 0.6;
+        }
+
+        .decoration-dots span:nth-child(2) {
+            background: var(--secondary);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* ========== 第一层：时光之门 ========== */
+        .section-gate {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: white;
+            position: relative;
+        }
+
+        .section-gate::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 157, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(192, 132, 252, 0.3) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .gate-main {
+            position: relative;
+            z-index: 2;
+        }
+
+        .gate-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.3), rgba(192, 132, 252, 0.3));
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .gate-title {
+            font-family: 'Playfair Display', 'Noto Serif SC', 'ZCOOL XiaoWei', serif;
+            font-size: 6rem;
+            font-weight: 800;
+            letter-spacing: 20px;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #fff 0%, #FFE4EC 20%, #FFB6C1 35%, #FF6B9D 50%, #FFB6C1 65%, #FFE4EC 80%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 100px rgba(255, 107, 157, 0.5);
+            animation: titleGlow 4s ease-in-out infinite;
+            text-stroke: 2px rgba(255, 107, 157, 0.3);
+            -webkit-text-stroke: 2px rgba(255, 107, 157, 0.3);
+            padding-left: 1ch;
+            line-height: 1.4;
+            text-align: left;
+            display: inline-block;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 40px rgba(255, 107, 157, 0.4)) drop-shadow(0 0 80px rgba(255, 107, 157, 0.2)); 
+            }
+            50% { 
+                filter: drop-shadow(0 0 60px rgba(255, 107, 157, 0.7)) drop-shadow(0 0 120px rgba(255, 107, 157, 0.4)); 
+            }
+        }
+
+        .gate-heart-container {
+            position: relative;
+            margin: 3rem 0;
+        }
+
+        .gate-heart {
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            width: 120px;
+            height: 110px;
+            margin: 3rem auto;
+            animation: heartbeat 1.2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.5));
+        }
+
+        .gate-heart::before,
+        .gate-heart::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 62px;
+            height: 95px;
+            border-radius: 62px 62px 0 0;
+            background: linear-gradient(135deg, #FF9EC4 0%, #FF6B9D 40%, #FF4081 100%);
+            box-shadow: 
+                0 0 30px rgba(255, 64, 129, 0.6),
+                inset 0 -10px 20px rgba(0, 0, 0, 0.1),
+                inset 0 10px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .gate-heart::before {
+            left: 58px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .gate-heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        .gate-heart:hover {
+            transform: scale(1.25);
+            filter: drop-shadow(0 0 40px rgba(255, 107, 157, 0.8));
+        }
+
+        .gate-heart:hover::before,
+        .gate-heart:hover::after {
+            box-shadow: 
+                0 0 50px rgba(255, 64, 129, 0.9),
+                inset 0 -10px 20px rgba(0, 0, 0, 0.1),
+                inset 0 10px 20px rgba(255, 255, 255, 0.4);
+        }
+
+        .gate-heart.clicked::before,
+        .gate-heart.clicked::after {
+            background: linear-gradient(135deg, #FF6B9D 0%, #FF1493 50%, #C71585 100%);
+            box-shadow: 
+                0 0 80px rgba(255, 64, 129, 1),
+                inset 0 -10px 20px rgba(0, 0, 0, 0.2),
+                inset 0 10px 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .gate-heart.clicked {
+            animation: none;
+            transform: scale(1.4);
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.18); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.12); }
+            60% { transform: scale(1); }
+        }
+
+        .gate-rings {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .gate-ring {
+            position: absolute;
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: ringPulse 3s ease-out infinite;
+        }
+
+        .gate-ring:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            animation-delay: 0s;
+        }
+
+        .gate-ring:nth-child(2) {
+            width: 180px;
+            height: 180px;
+            animation-delay: 1s;
+        }
+
+        .gate-ring:nth-child(3) {
+            width: 240px;
+            height: 240px;
+            animation-delay: 2s;
+        }
+
+        @keyframes ringPulse {
+            0% { opacity: 0.8; transform: translate(-50%, -50%) scale(0.8); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
+        }
+
+        .gate-hint {
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-top: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .gate-cta {
+            margin-top: 3rem;
+            padding: 1.2rem 3.5rem;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 3px;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        }
+
+        .gate-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.5);
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: linear-gradient(135deg, #FFB6C1, #FF6B9D);
+            border-radius: 50%;
+            opacity: 0.8;
+            box-shadow: 0 0 10px rgba(255, 182, 193, 0.8);
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) translateX(0); 
+                opacity: 0.8;
+            }
+            25% { 
+                transform: translateY(-20px) translateX(10px); 
+                opacity: 1;
+            }
+            50% { 
+                transform: translateY(-10px) translateX(-5px); 
+                opacity: 0.6;
+            }
+            75% { 
+                transform: translateY(-30px) translateX(5px); 
+                opacity: 0.9;
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+        }
+
+        /* 漂浮心形背景 */
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.4;
+            animation: floatHeart 8s ease-in-out infinite;
+        }
+
+        @keyframes floatHeart {
+            0% { 
+                transform: translateY(100vh) rotate(0deg); 
+                opacity: 0;
+            }
+            10% { 
+                opacity: 0.6;
+            }
+            50% { 
+                opacity: 0.4;
+            }
+            90% { 
+                opacity: 0.6;
+            }
+            100% { 
+                transform: translateY(-10vh) rotate(360deg); 
+                opacity: 0;
+            }
+        }
+
+        /* ========== 第二层：心动瞬间 ========== */
+        .section-love {
+            background: linear-gradient(160deg, #1a0a1e 0%, #2d1b36 30%, #1a0a1e 60%, #2d1b36 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-love::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(255, 107, 157, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(192, 132, 252, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 0%, rgba(255, 215, 0, 0.06) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .section-love::after {
+            content: '✦';
+            position: absolute;
+            top: 5%;
+            right: 8%;
+            font-size: 1.2rem;
+            color: rgba(255, 215, 0, 0.15);
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.15; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        .love-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .love-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.5rem 1.8rem;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(192, 132, 252, 0.15));
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: rgba(255, 182, 193, 0.9);
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 107, 157, 0.2);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+        }
+
+        .love-quote {
+            font-size: 1.6rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 2.2;
+            font-weight: 300;
+            font-family: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
+            letter-spacing: 3px;
+        }
+
+        .love-quote span {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        .love-items {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .love-item {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+            border-radius: 16px;
+            padding: 1.1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
+        }
+
+        .love-item:hover {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.12), rgba(192, 132, 252, 0.08));
+            border-color: rgba(255, 107, 157, 0.25);
+            transform: translateX(8px);
+            box-shadow: 0 8px 30px rgba(255, 107, 157, 0.1);
+        }
+
+        .love-item .item-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(192, 132, 252, 0.2));
+            border-radius: 10px;
+            color: #FFD700;
+        }
+
+        .love-item .item-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.5;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .love-item .item-number {
+            flex-shrink: 0;
+            width: 24px;
+            text-align: right;
+            font-size: 0.75rem;
+            color: rgba(255, 215, 0, 0.4);
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* ========== 第三层：我们的故事 ========== */
+        .section-story {
+            background: linear-gradient(180deg, #1a1a2e 0%, #2d1f3d 50%, #3d2a4d 100%);
+            color: white;
+            position: relative;
+        }
+
+        .section-story::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 10% 90%, rgba(255, 107, 157, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 90% 10%, rgba(192, 132, 252, 0.2) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .story-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .story-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 107, 157, 0.2);
+            border: 1px solid rgba(255, 107, 157, 0.4);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-title {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 3rem;
+            letter-spacing: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .story-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            letter-spacing: 2px;
+        }
+
+        .timeline-container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--primary), var(--secondary), transparent);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 42%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.02);
+        }
+
+        .timeline-spacer {
+            width: 16%;
+        }
+
+        .timeline-dot {
+            width: 16%;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .timeline-dot::before {
+            content: '💕';
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+            z-index: 2;
+        }
+
+        .timeline-photo {
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-photo:not([style*="background-image"]) {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(192, 132, 252, 0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-desc {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .photo-wall-item {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .photo-wall {
+            width: 100%;
+            max-width: 800px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .photo-wall-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .photo-wall-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .photo-item {
+            aspect-ratio: 1;
+            border-radius: 12px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-item:not([style*="background-image"]) {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.3), rgba(192, 132, 252, 0.3));
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        }
+
+        .photo-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-item:hover::after {
+            opacity: 1;
+        }
+
+        .photo-item.photo-large {
+            grid-row: span 2;
+            grid-column: span 1;
+            aspect-ratio: 3/4;
+        }
+
+        .photo-item.photo-wide {
+            grid-column: span 2;
+            aspect-ratio: 2;
+        }
+
+        /* ========== 第四层：情书与感谢 ========== */
+        .section-letter {
+            background: linear-gradient(180deg, #1a0a1e 0%, #2d1b36 40%, #1a0a1e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-letter::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(255, 107, 157, 0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at 50% 100%, rgba(192, 132, 252, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .letter-title {
+            font-family: 'Playfair Display', 'Noto Serif SC', serif;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 6px;
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+        }
+
+        .letter-card {
+            max-width: 520px;
+            margin: 0 auto;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .letter-card-inner {
+            background: linear-gradient(160deg, #FFFEF5 0%, #FFF8E7 40%, #FFF5E6 100%);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(255, 215, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .letter-card-inner::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        .letter-card:not(.opened) .letter-card-inner {
+            transform: translateY(0);
+        }
+
+        .letter-card:not(.opened):hover .letter-card-inner {
+            transform: translateY(-4px);
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.5),
+                0 0 50px rgba(255, 215, 0, 0.15);
+        }
+
+        .letter-card.opened .letter-card-inner {
+            transform: translateY(0) scale(1);
+        }
+
+        .letter-ribbon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 100%;
+            background: linear-gradient(180deg, #DC143C, #B22222, #DC143C);
+            z-index: 2;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0.9;
+        }
+
+        .letter-ribbon::before,
+        .letter-ribbon::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #DC143C, #B22222);
+            border-radius: 50%;
+        }
+
+        .letter-ribbon::before { top: -15px; }
+        .letter-ribbon::after { bottom: -15px; }
+
+        .letter-card.opened .letter-ribbon {
+            transform: translate(-50%, -50%) scaleY(0);
+            opacity: 0;
+        }
+
+        .letter-seal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #FF6B9D, #C084FC);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            z-index: 3;
+            box-shadow: 0 4px 20px rgba(255, 107, 157, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+        }
+
+        .letter-card.opened .letter-seal {
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+        }
+
+        .letter-preview {
+            text-align: center;
+            padding: 1rem 0;
+            position: relative;
+            z-index: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        .letter-card.opened .letter-preview {
+            display: none;
+        }
+
+        .letter-preview-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .letter-preview-text {
+            font-size: 1rem;
+            color: #8B7355;
+            letter-spacing: 2px;
+        }
+
+        .letter-body {
+            display: none;
+            font-family: 'Ma Shan Zheng', 'Noto Serif SC', cursive;
+            font-size: 1.25rem;
+            line-height: 2.4;
+            color: #4A3728;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .letter-card.opened .letter-body {
+            display: block;
+            animation: letterReveal 0.8s ease 0.3s both;
+        }
+
+        @keyframes letterReveal {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .letter-body .greeting {
+            font-size: 1.5rem;
+            color: #B22222;
+            margin-bottom: 1.2rem;
+            font-weight: bold;
+        }
+
+        .letter-body .paragraph {
+            text-indent: 2em;
+            margin-bottom: 1.2rem;
+            color: #5C4033;
+        }
+
+        .letter-body .signature {
+            text-align: right;
+            margin-top: 1.5rem;
+            font-size: 1.3rem;
+            color: #B22222;
+        }
+
+        .letter-body .signature .heart {
+            display: inline-block;
+            animation: heartBeat 1.2s ease-in-out infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.3); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            60% { transform: scale(1); }
+        }
+
+        .letter-sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .letter-card.opened .letter-sparkle {
+            display: none;
+        }
+
+        .letter-hint {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 2px;
+            animation: hintPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes hintPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .letter-card.opened ~ .letter-hint {
+            display: none;
+        }
+
+        .thanks-title {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 2rem;
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+
+        .thanks-cards {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .thanks-card {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thanks-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .thanks-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .thanks-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .thanks-text {
+            font-size: 1rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* ========== 第五层：礼物拆箱 ========== */
+        .section-gift {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: white;
+            position: relative;
+        }
+
+        .section-gift::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 50% 50%, rgba(255, 107, 157, 0.2) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .gift-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gift-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .gift-title {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 3rem;
+            letter-spacing: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .gift-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .gift-box-container {
+            position: relative;
+            z-index: 1;
+            margin: 2rem 0;
+        }
+
+        .gift-box {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            cursor: pointer;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+        }
+
+        .gift-box:not(.opened) {
+            animation: floatGift 3s ease-in-out infinite;
+        }
+
+        @keyframes floatGift {
+            0%, 100% { transform: translateY(0) rotateX(5deg); }
+            50% { transform: translateY(-15px) rotateX(0deg); }
+        }
+
+        .gift-box-body {
+            width: 100%;
+            height: 65%;
+            background: linear-gradient(145deg, #FF6B9D 0%, #C084FC 100%);
+            position: absolute;
+            bottom: 0;
+            border-radius: 15px;
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.3),
+                inset 0 -10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .gift-ribbon-v {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25px;
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .gift-ribbon-h {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 25px;
+            background: linear-gradient(180deg, #FFD700, #FFA500);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .gift-lid {
+            position: absolute;
+            top: 30%;
+            left: -8%;
+            width: 116%;
+            height: 35px;
+            background: linear-gradient(145deg, #FF6B9D 0%, #C084FC 100%);
+            border-radius: 8px;
+            transform-origin: bottom center;
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .gift-lid::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25px;
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+        }
+
+        .gift-box.opened .gift-lid {
+            transform: rotateX(-140deg);
+        }
+
+        .gift-bow {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3.5rem;
+            z-index: 10;
+            transition: all 0.5s;
+            filter: drop-shadow(0 5px 15px rgba(255, 215, 0, 0.5));
+        }
+
+        .gift-box.opened .gift-bow {
+            transform: translateX(-50%) translateY(-30px) scale(0);
+            opacity: 0;
+        }
+
+        .gift-inside {
+            display: none;
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 5;
+        }
+
+        .gift-box.opened .gift-inside {
+            display: block;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.4s forwards;
+            opacity: 0;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: translateX(-50%) scale(0.5); }
+            to { opacity: 1; transform: translateX(-50%) scale(1); }
+        }
+
+        .gift-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.3), rgba(192, 132, 252, 0.3));
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border: 5px solid var(--accent);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .gift-final-text {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gift-final-date {
+            font-size: 1rem;
+            opacity: 0.8;
+            letter-spacing: 2px;
+        }
+
+        .gift-cta {
+            margin-top: 3rem;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+
+        .gift-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.5);
+        }
+
+        /* 星辰特效 */
+        .star-particle {
+            position: fixed;
+            pointer-events: none;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: starFall 2s ease-out forwards;
+            z-index: 9999;
+        }
+
+        @keyframes starFall {
+            0% { transform: translateY(0) scale(0) rotate(0deg); opacity: 1; }
+            20% { transform: translateY(-30px) scale(1.5) rotate(180deg); opacity: 1; }
+            100% { transform: translateY(80px) scale(0.3) rotate(360deg); opacity: 0; }
+        }
+
+        /* 照片模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+        }
+
+        .modal.visible {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 85vw;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 0 60px rgba(255, 107, 157, 0.3);
+            object-fit: contain;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            z-index: 2001;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            opacity: 1;
+        }
+
+        /* 滚动提示 */
+        .scroll-hint {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            animation: bounce 2s infinite;
+            z-index: 100;
+            pointer-events: none;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .scroll-hint.hidden {
+            display: none;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .gate-title {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+
+            .love-title, .story-title, .letter-title, .gift-title {
+                font-size: 2rem;
+            }
+
+            .love-quote {
+                font-size: 1.1rem;
+            }
+
+            .love-items {
+                gap: 0.8rem;
+            }
+
+            .love-item {
+                padding: 0.9rem 1rem;
+            }
+
+            .love-item .item-text {
+                font-size: 0.9rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                padding-left: 50px;
+                align-items: flex-start;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-spacer,
+            .timeline-dot {
+                display: none;
+            }
+
+            .thanks-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .letter-card-inner {
+                padding: 2rem 1.5rem;
+            }
+
+            .letter-title {
+                font-size: 2.2rem;
+            }
+
+            .letter-body {
+                font-size: 1.1rem;
+                line-height: 2.2;
+            }
+
+            .reason-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .photo-wall-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            .photo-item.photo-large {
+                grid-row: span 1;
+                aspect-ratio: 1;
+            }
+
+            .photo-item.photo-wide {
+                grid-column: span 2;
+                aspect-ratio: 2;
+            }
+
+            .modal-content {
+                max-width: 92vw;
+                max-height: 80vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gate-title {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .love-item {
+                padding: 0.8rem 0.8rem;
+                gap: 0.6rem;
+            }
+
+            .love-item .item-text {
+                font-size: 0.85rem;
+            }
+
+            .love-quote {
+                font-size: 1rem;
+            }
+
+            .photo-wall-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 6px;
+            }
+
+            .letter-title {
+                font-size: 1.8rem;
+                letter-spacing: 3px;
+            }
+
+            .letter-card-inner {
+                padding: 1.5rem 1rem;
+            }
+
+            .letter-body {
+                font-size: 1rem;
+                line-height: 2;
+            }
+
+            .photo-item.photo-wide {
+                grid-column: span 2;
+                aspect-ratio: 2;
+            }
+
+            .modal-content {
+                max-width: 95vw;
+                max-height: 70vh;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="heart-container">
-            <div class="heart"></div>
-            <div class="heart"></div>
-            <div class="heart"></div>
-        </div>
+    <!-- 第一层：时光之门 -->
+    <section class="section section-gate" id="section-gate">
+        <div class="particles" id="particles"></div>
+        <div class="gate-main">
+            <h1 class="gate-title">    星光落满<br/>    而你在我</h1>
+            <div class="decoration-dots">
+                <span></span><span></span><span></span>
+            </div>
 
-        <div class="card">
-            <h1 class="title">亲爱的 ❤️</h1>
-            <p class="subtitle">我有话想对你说...</p>
-            
-            <div class="message-box">
-                <p class="message">
-                    从遇见你的那一刻起，
-                    <br>我的生命就变得不再平凡。
-                    <br><br>
-                    你的微笑是我每天最期待的阳光，
-                    <br>你的声音是我听过最美的旋律。
-                    <br><br>
-                    我想告诉你：
-                    <br><span class="highlight">我喜欢你</span>，
-                    <br>不止一点点，
-                    <br>是很喜欢很喜欢的那种。
+            <div class="gate-heart-container">
+                <div class="gate-rings">
+                    <div class="gate-ring"></div>
+                    <div class="gate-ring"></div>
+                    <div class="gate-ring"></div>
+                </div>
+                <div class="gate-heart" onclick="openGate()"></div>
+            </div>
+
+            <button class="gate-cta" onclick="scrollToSection('section-love')">
+                NEXT
+            </button>
+        </div>
+    </section>
+
+    <!-- 第二层：心动瞬间 -->
+    <section class="section section-love" id="section-love">
+        <div class="floating-hearts" id="floatingHearts"></div>
+        <div class="section-inner">
+            <div class="love-header">
+                <div class="love-badge">To the best of all</div>
+                <div class="decoration-line"></div>
+                <p class="love-quote">
+                    遇见你的那一刻起<br>
+                    我的世界便有了<span>最温暖的光</span>
                 </p>
             </div>
 
-            <div class="countdown">
-                <div class="countdown-item">
-                    <span class="countdown-num">5</span>
-                    <span class="countdown-text">2</span>
+            <div class="love-items">
+                <div class="love-item">
+                    <span class="item-number">01</span>
+                    <span class="item-icon">♥</span>
+                    <span class="item-text">喜欢你笑容，总能治愈我所有的不开心</span>
                 </div>
-                <div class="countdown-item">
-                    <span class="countdown-num">0</span>
-                    <span class="countdown-text">0</span>
+                <div class="love-item">
+                    <span class="item-number">02</span>
+                    <span class="item-icon">✦</span>
+                    <span class="item-text">喜欢你认真的样子，自带光芒</span>
+                </div>
+                <div class="love-item">
+                    <span class="item-number">03</span>
+                    <span class="item-icon">♡</span>
+                    <span class="item-text">喜欢你的小心思，总能给我满满的感动</span>
+                </div>
+                <div class="love-item">
+                    <span class="item-number">04</span>
+                    <span class="item-icon">◆</span>
+                    <span class="item-text">喜欢你的坚韧，也喜欢你偶尔的小脆弱</span>
+                </div>
+                <div class="love-item">
+                    <span class="item-number">05</span>
+                    <span class="item-icon">☆</span>
+                    <span class="item-text">喜欢你本身，不需要任何理由</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第三层：我们的故事 -->
+    <section class="section section-story" id="section-story">
+        <div class="story-header">
+            <p class="story-subtitle">一路相伴，皆是欢喜；</p>
+            <div class="decoration-dots">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <div class="timeline-container">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-photo" style="background-image: url('first/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20260519224403_222_6.jpg');"></div>
+                        <div class="timeline-date">2024年6月</div>
+                        <div class="timeline-desc">我们相遇的那天</div>
+                    </div>
+                    <div class="timeline-spacer"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-spacer"></div>
+                </div>
+
+                <div class="timeline-item photo-wall-item">
+                    <div class="photo-wall">
+                        <div class="photo-wall-title">Moments</div>
+                        <div class="photo-wall-grid" id="photoWallGrid">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-spacer"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-spacer"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-photo" style="background-image: url('last/ScreenShot_2026-05-19_224613_728.png');"></div>
+                        <div class="timeline-date" style="text-align: center;">...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第四层：情书与感谢 -->
+    <section class="section section-letter" id="section-letter">
+        <div class="section-inner">
+            <div class="letter-header">
+                <h2 class="letter-title">I want to tell you</h2>
+                <div class="decoration-line" style="background: linear-gradient(90deg, transparent, #FFD700, transparent);"></div>
+            </div>
+
+            <div class="letter-card" id="letterCard" onclick="openLetter()">
+                <div class="letter-card-inner">
+                    <div class="letter-ribbon"></div>
+                    <div class="letter-seal">💌</div>
+                    <div class="letter-preview">
+                        <div class="letter-preview-icon">💕</div>
+                        <div class="letter-preview-text">轻触开启</div>
+                    </div>
+                    <div class="letter-body">
+                        <div class="greeting">亲爱的：</div>
+                        <div class="paragraph">
+                            谢谢你，一路相伴，能遇见你，<br>是我最大的幸运。
+                        </div>
+                        <div class="paragraph">
+                            谢谢你，包容我的小脾气，迁就我的不足，也谢谢你为我们的所有付出。
+                        </div>
+                        <div class="paragraph">
+                            因为有你，才让我慢慢变成了更好的自己。
+                        </div>
+                        <div class="signature">
+                            永远偏爱你的人<br>
+                            520 快乐<br>
+                            <span class="heart">❤️</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="buttons">
-                <button class="btn-yes" onclick="showLove()">我也喜欢你 💖</button>
-                <button class="btn-no" onclick="playGame()">再考虑一下...</button>
+            <div class="letter-hint">✦ 轻触信笺 ✦</div>
+        </div>
+    </section>
+
+    <!-- 第五层：礼物拆箱 -->
+    <section class="section section-gift" id="section-gift">
+        <div class="gift-header">
+            <p class="gift-subtitle">🥂</p>
+            <div class="decoration-dots">
+                <span></span><span></span><span></span>
             </div>
-
-            <div class="confetti" id="confetti"></div>
         </div>
 
-        <div class="stars">
-            <span class="star">✨</span>
-            <span class="star">⭐</span>
-            <span class="star">✨</span>
-            <span class="star">⭐</span>
-            <span class="star">✨</span>
+        <div class="gift-box-container">
+            <div class="gift-box" id="giftBox" onclick="openGiftAndScatter()">
+                <div class="gift-box-body">
+                    <div class="gift-ribbon-v"></div>
+                    <div class="gift-ribbon-h"></div>
+                </div>
+                <div class="gift-lid">
+                    <div class="gift-ribbon-v"></div>
+                </div>
+                <div class="gift-bow">🎀</div>
+                <div class="gift-inside">
+                    <div class="gift-photo">💑</div>
+                    <div class="gift-final-text">爱你</div>
+                    <div class="gift-final-date">2026.05.20</div>
+                </div>
+            </div>
         </div>
+
+        <div class="gift-result" id="giftResult" style="display: none; text-align: center; margin-top: 2rem;">
+            <img src="gift.png" alt="礼物" style="max-width: 200px; border-radius: 12px; box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);">
+            <br>
+            <a href="gift.png" download="gift.png" style="display: inline-block; margin-top: 1rem; padding: 0.6rem 1.5rem; background: linear-gradient(135deg, #FFD700, #FFA500); color: #333; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 0.9rem;">保存图片</a>
+        </div>
+    </section>
+
+    <!-- 照片模态框 -->
+    <div class="modal" id="photoModal">
+        <span class="modal-close" onclick="closePhotoModal()">×</span>
+        <img class="modal-content" id="photoModalImg" src="" alt="照片">
     </div>
 
-    <script src="app.js"></script>
+    <script>
+        // 创建粒子效果
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = (5 + Math.random() * 5) + 's';
+                particle.style.animation = `float ${5 + Math.random() * 5}s ease-in-out infinite`;
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(particle);
+            }
+
+            // 添加闪光
+            for (let i = 0; i < 10; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(sparkle);
+            }
+        }
+
+        // 创建漂浮心形
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['💕', '💗', '💖', '💘', '💝', '💓'];
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 8 + 's';
+                heart.style.animationDuration = (8 + Math.random() * 4) + 's';
+                heart.style.fontSize = (1.2 + Math.random() * 0.8) + 'rem';
+                heart.style.opacity = 0.3 + Math.random() * 0.3;
+                container.appendChild(heart);
+            }
+        }
+
+        // 打开时光之门
+        function openGate() {
+            const heart = document.querySelector('.gate-heart');
+            heart.classList.add('clicked');
+            setTimeout(() => {
+                heart.classList.remove('clicked');
+            }, 300);
+        }
+
+        // 滚动到指定区块
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 切换心动理由
+        function toggleReason(element) {
+            element.classList.toggle('expanded');
+            const hint = element.querySelector('.reason-hint');
+            if (element.classList.contains('expanded')) {
+                hint.textContent = '💕 我也这么觉得！';
+            } else {
+                hint.textContent = '✨ 点击展开';
+            }
+        }
+
+        // 打开信封
+        function openLetter() {
+            const card = document.getElementById('letterCard');
+            card.classList.add('opened');
+        }
+
+        // 打开礼物
+        function openGiftAndScatter() {
+            const gift = document.getElementById('giftBox');
+            if (gift.classList.contains('opened')) return;
+            gift.classList.add('opened');
+            setTimeout(() => {
+                document.getElementById('giftResult').style.display = 'block';
+                scatterStars();
+            }, 600);
+        }
+
+        // 庆祝效果
+        function scatterStars() {
+            const colors = ['#FFD700', '#FFA500', '#FF6B9D', '#C084FC', '#FF9FF3', '#FFD93D', '#FFFFFF'];
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    createStar(colors[Math.floor(Math.random() * colors.length)]);
+                }, i * 20);
+            }
+        }
+
+        function createStar(color) {
+            const star = document.createElement('div');
+            star.className = 'star-particle';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.background = color;
+            star.style.boxShadow = `0 0 6px ${color}, 0 0 12px ${color}`;
+            const size = 4 + Math.random() * 8;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            document.body.appendChild(star);
+            setTimeout(() => star.remove(), 2000);
+        }
+
+        // 照片模态框
+        function openPhotoModal(imgUrl) {
+            const modal = document.getElementById('photoModal');
+            const img = document.getElementById('photoModalImg');
+            img.src = imgUrl;
+            modal.classList.add('visible');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePhotoModal() {
+            document.getElementById('photoModal').classList.remove('visible');
+            document.body.style.overflow = '';
+        }
+
+        // 滚动动画监听
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // 第二层：心动卡片动画
+                    if (entry.target.id === 'section-love') {
+                        document.querySelectorAll('.reason-card').forEach((card, i) => {
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, i * 100);
+                        });
+                    }
+
+                    // 第三层：时间线动画
+                    if (entry.target.id === 'section-story') {
+                        document.querySelectorAll('.timeline-item').forEach((item, i) => {
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateY(0)';
+                            }, i * 150);
+                        });
+                    }
+
+                    // 第四层：感谢卡片动画
+                    if (entry.target.id === 'section-letter') {
+                        document.querySelectorAll('.thanks-card').forEach((card, i) => {
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, i * 150);
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.3 });
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            createFloatingHearts();
+
+            // 初始隐藏动画元素
+            document.querySelectorAll('.reason-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.5s ease';
+            });
+
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = 'all 0.5s ease';
+            });
+
+            document.querySelectorAll('.thanks-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.5s ease';
+            });
+
+            // 监听所有区块
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // 点击模态框外部关闭
+            document.getElementById('photoModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('photoModal')) {
+                    closePhotoModal();
+                }
+            });
+
+            // 键盘 Escape 键关闭模态框
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closePhotoModal();
+                }
+            });
+
+            // 动态加载回忆相册图片
+            const secondImages = [
+                '微信图片_20260519224404_223_6.jpg',
+                '微信图片_20260519224405_224_6.jpg',
+                '微信图片_20260519224406_225_6.png',
+                '微信图片_20260519224413_226_6.jpg',
+                '微信图片_20260519224413_227_6.jpg',
+                '微信图片_20260519224421_228_6.jpg',
+                '微信图片_20260519224422_229_6.jpg',
+                '微信图片_20260519224424_230_6.jpg',
+                '微信图片_20260519224425_231_6.jpg',
+                '微信图片_20260519224426_232_6.jpg',
+                '微信图片_20260519224427_233_6.jpg',
+                '微信图片_20260519224431_234_6.jpg',
+                '微信图片_20260519224433_235_6.jpg',
+                '微信图片_20260519224435_236_6.jpg',
+                '微信图片_20260519224437_237_6.jpg',
+                '微信图片_20260519224439_238_6.jpg',
+                '微信图片_20260519224441_239_6.jpg',
+                '微信图片_20260519224443_240_6.jpg',
+                '微信图片_20260519224445_241_6.jpg',
+                '微信图片_20260519224447_242_6.jpg',
+                '微信图片_20260519224449_243_6.jpg',
+                '微信图片_20260519224454_245_6.jpg'
+            ];
+            const grid = document.getElementById('photoWallGrid');
+            secondImages.forEach((filename, index) => {
+                 const item = document.createElement('div');
+                 const prefix = 'second/' + encodeURIComponent(filename);
+                 item.className = 'photo-item' + (index === 0 ? ' photo-large' : '');
+                 item.style.backgroundImage = "url('" + prefix + "')";
+                 grid.appendChild(item);
+             });
+        });
+    </script>
 </body>
 </html>
