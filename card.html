@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>访问卡片</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@400;500;600;700&family=ZCOOL+XiaoWei&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Noto Sans SC', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            padding: 1.5rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 背景装饰光晕 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(circle at 30% 40%, rgba(255, 107, 157, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(192, 132, 252, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(255, 215, 0, 0.08) 0%, transparent 40%);
+            animation: bgRotate 30s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes bgRotate {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(5deg) scale(1.1); }
+        }
+
+        /* 背景粒子 */
+        .bg-particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .bg-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            animation: particleFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% { transform: translateY(100vh) scale(0); opacity: 0; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        /* 卡片容器 */
+        .card-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 32px;
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* 顶部装饰角标 */
+        .card-corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-color: rgba(255, 215, 0, 0.2);
+            border-style: solid;
+            border-width: 0;
+        }
+
+        .card-corner-tl {
+            top: 16px;
+            left: 16px;
+            border-top-width: 1px;
+            border-left-width: 1px;
+            border-radius: 4px 0 0 0;
+        }
+
+        .card-corner-tr {
+            top: 16px;
+            right: 16px;
+            border-top-width: 1px;
+            border-right-width: 1px;
+            border-radius: 0 4px 0 0;
+        }
+
+        .card-corner-bl {
+            bottom: 16px;
+            left: 16px;
+            border-bottom-width: 1px;
+            border-left-width: 1px;
+            border-radius: 0 0 0 4px;
+        }
+
+        .card-corner-br {
+            bottom: 16px;
+            right: 16px;
+            border-bottom-width: 1px;
+            border-right-width: 1px;
+            border-radius: 0 0 4px 0;
+        }
+
+        /* 顶部徽章 */
+        .card-badge {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .card-badge-icon {
+            display: inline-block;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            animation: heartBeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.2); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.1); }
+        }
+
+        .card-badge-title {
+            font-family: 'Playfair Display', 'ZCOOL XiaoWei', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #FFE4EC 0%, #FFB6C1 30%, #FF6B9D 60%, #FFB6C1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-badge-sub {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 4px;
+            margin-top: 0.3rem;
+            font-weight: 300;
+        }
+
+        /* 装饰分割线 */
+        .card-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 1.5rem 0;
+        }
+
+        .card-divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+        }
+
+        .card-divider-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.5);
+            flex-shrink: 0;
+        }
+
+        /* 二维码区域 */
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .qr-wrapper {
+            position: relative;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .qr-wrapper:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 15px 50px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(255, 107, 157, 0.15);
+        }
+
+        .qr-wrapper img {
+            display: block;
+            width: 200px;
+            height: 200px;
+            border-radius: 12px;
+        }
+
+        /* 二维码外围装饰光晕 */
+        .qr-glow {
+            position: absolute;
+            inset: -8px;
+            border-radius: 28px;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(192, 132, 252, 0.2), rgba(255, 215, 0, 0.2));
+            z-index: -1;
+            animation: glowPulse 3s ease-in-out infinite;
+            filter: blur(4px);
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.03); }
+        }
+
+        /* 扫描提示 */
+        .scan-hint {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        .scan-hint-line {
+            width: 24px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .scan-hint-icon {
+            animation: scanPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scanPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* URL 展示 */
+        .url-display {
+            margin-top: 1.2rem;
+            padding: 0.8rem 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'Noto Sans SC', monospace;
+            word-break: break-all;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            user-select: all;
+        }
+
+        .url-display:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 底部装饰 */
+        .card-footer {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 1.5rem;
+        }
+
+        .card-footer-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .card-footer-dot:nth-child(1) { background: rgba(255, 107, 157, 0.4); }
+        .card-footer-dot:nth-child(2) { background: rgba(192, 132, 252, 0.4); }
+        .card-footer-dot:nth-child(3) { background: rgba(255, 215, 0, 0.4); }
+        .card-footer-dot:nth-child(4) { background: rgba(192, 132, 252, 0.4); }
+        .card-footer-dot:nth-child(5) { background: rgba(255, 107, 157, 0.4); }
+
+        /* 浮动心形装饰 */
+        .float-hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .float-heart {
+            position: absolute;
+            font-size: 1rem;
+            opacity: 0.2;
+            animation: heartFloatUp 10s ease-in-out infinite;
+        }
+
+        @keyframes heartFloatUp {
+            0% { transform: translateY(100vh) rotate(0deg) scale(0.5); opacity: 0; }
+            15% { opacity: 0.3; }
+            85% { opacity: 0.3; }
+            100% { transform: translateY(-10vh) rotate(360deg) scale(1); opacity: 0; }
+        }
+
+        /* 响应式 */
+        @media (max-width: 480px) {
+            .card {
+                padding: 1.8rem 1.2rem;
+                border-radius: 24px;
+            }
+
+            .card-badge-title {
+                font-size: 1.2rem;
+            }
+
+            .qr-wrapper img {
+                width: 160px;
+                height: 160px;
+            }
+
+            .qr-wrapper {
+                padding: 10px;
+            }
+
+            .url-display {
+                font-size: 0.7rem;
+                padding: 0.6rem 0.8rem;
+            }
+
+            .card-corner {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .qr-wrapper img {
+                width: 140px;
+                height: 140px;
+            }
+
+            .card {
+                padding: 1.5rem 1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .qr-wrapper img {
+                width: 220px;
+                height: 220px;
+            }
+
+            .card {
+                padding: 3rem 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景粒子 -->
+    <div class="bg-particles" id="bgParticles"></div>
+
+    <!-- 浮动心形 -->
+    <div class="float-hearts" id="floatHearts"></div>
+
+    <!-- 卡片 -->
+    <div class="card-wrapper">
+        <div class="card">
+            <!-- 四角装饰 -->
+            <div class="card-corner card-corner-tl"></div>
+            <div class="card-corner card-corner-tr"></div>
+            <div class="card-corner card-corner-bl"></div>
+            <div class="card-corner card-corner-br"></div>
+
+            <!-- 徽章 -->
+            <div class="card-badge">
+                <div class="card-badge-icon">💕</div>
+                <div class="card-badge-title">Scan to Visit</div>
+                <div class="card-badge-sub">✦ 扫码访问 ✦</div>
+            </div>
+
+            <!-- 分割线 -->
+            <div class="card-divider">
+                <div class="card-divider-line"></div>
+                <div class="card-divider-dot"></div>
+                <div class="card-divider-line"></div>
+            </div>
+
+            <!-- 二维码 -->
+            <div class="qr-section">
+                <div class="qr-wrapper">
+                    <div class="qr-glow"></div>
+                    <img
+                        src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://luckystarli.github.io/cloud/"
+                        alt="QR Code"
+                        crossorigin="anonymous"
+                    >
+                </div>
+
+                <div class="scan-hint">
+                    <span class="scan-hint-line"></span>
+                    <span class="scan-hint-icon">◎</span>
+                    <span class="scan-hint-line"></span>
+                </div>
+            </div>
+
+            <!-- URL -->
+            <div class="url-display" title="点击复制链接" onclick="copyUrl(this)">
+                https://luckystarli.github.io/cloud/
+            </div>
+
+            <!-- 底部装饰 -->
+            <div class="card-footer">
+                <span class="card-footer-dot"></span>
+                <span class="card-footer-dot"></span>
+                <span class="card-footer-dot"></span>
+                <span class="card-footer-dot"></span>
+                <span class="card-footer-dot"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 创建背景粒子
+        (function createBgParticles() {
+            const container = document.getElementById('bgParticles');
+            for (let i = 0; i < 30; i++) {
+                const el = document.createElement('div');
+                el.className = 'bg-particle';
+                el.style.left = Math.random() * 100 + '%';
+                el.style.animationDelay = Math.random() * 8 + 's';
+                el.style.animationDuration = (6 + Math.random() * 6) + 's';
+                el.style.width = (2 + Math.random() * 3) + 'px';
+                el.style.height = el.style.width;
+                container.appendChild(el);
+            }
+        })();
+
+        // 创建浮动心形
+        (function createFloatHearts() {
+            const container = document.getElementById('floatHearts');
+            const symbols = ['♥', '♡', '✦'];
+            for (let i = 0; i < 8; i++) {
+                const el = document.createElement('div');
+                el.className = 'float-heart';
+                el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                el.style.left = Math.random() * 100 + '%';
+                el.style.animationDelay = Math.random() * 10 + 's';
+                el.style.animationDuration = (8 + Math.random() * 6) + 's';
+                el.style.fontSize = (0.8 + Math.random() * 0.6) + 'rem';
+                el.style.opacity = 0.1 + Math.random() * 0.15;
+                container.appendChild(el);
+            }
+        })();
+
+        // 点击复制链接
+        function copyUrl(el) {
+            const text = el.textContent.trim();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast('已复制链接');
+                }).catch(() => {
+                    fallbackCopy(text, el);
+                });
+            } else {
+                fallbackCopy(text, el);
+            }
+        }
+
+        function fallbackCopy(text, el) {
+            const input = document.createElement('input');
+            input.value = text;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            showToast('已复制链接');
+        }
+
+        // 提示 Toast
+        function showToast(msg) {
+            const existing = document.querySelector('.toast');
+            if (existing) existing.remove();
+
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = msg;
+            Object.assign(toast.style, {
+                position: 'fixed',
+                bottom: '3rem',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                background: 'rgba(255, 255, 255, 0.15)',
+                backdropFilter: 'blur(12px)',
+                padding: '0.7rem 1.5rem',
+                borderRadius: '25px',
+                color: '#fff',
+                fontSize: '0.85rem',
+                letterSpacing: '1px',
+                zIndex: '9999',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                animation: 'toastIn 2.5s ease forwards',
+                fontFamily: "'Noto Sans SC', sans-serif"
+            });
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes toastIn {
+                    0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+                    15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                    75% { opacity: 1; transform: translateX(-50%) translateY(0); }
+                    100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+                }
+            `;
+            document.head.appendChild(style);
+            document.body.appendChild(toast);
+            setTimeout(() => { toast.remove(); style.remove(); }, 2600);
+        }
+    </script>
+</body>
+</html>
